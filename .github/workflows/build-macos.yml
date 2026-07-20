@@ -1,0 +1,48 @@
+name: Build macOS App
+
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: 'Target platform'
+        required: true
+        default: 'macos'
+      build_id:
+        description: 'Build record ID'
+        required: true
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install pyinstaller
+
+      - name: Build macOS app
+        run: |
+          pyinstaller --onefile --windowed --name app-macos main.py
+          # 如果生成了 .app 目录，打包成 zip
+          if [ -d dist/app-macos.app ]; then
+            cd dist && zip -r app-macos.zip app-macos.app
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-app-${{ inputs.build_id }}
+          path: |
+            dist/app-macos
+            dist/app-macos.zip
