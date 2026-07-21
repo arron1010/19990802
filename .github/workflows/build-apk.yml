@@ -3,6 +3,10 @@ name: Build Android APK with EAS
 on:
   workflow_dispatch:
     inputs:
+      ref:
+        description: 'Git ref to build'
+        required: false
+        default: ''
       platform:
         description: '目标平台'
         required: true
@@ -23,12 +27,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ inputs.ref }}
+          ref: ${{ inputs.ref || github.ref_name }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: false
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'pnpm'
 
       - name: Setup EAS
         uses: expo/expo-github-action@v8
@@ -37,7 +48,7 @@ jobs:
           token: ${{ secrets.EAS_ACCESS_TOKEN }}
 
       - name: Install dependencies
-        run: npm ci || npm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build Android APK
         id: eas_build
