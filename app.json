@@ -1,32 +1,65 @@
 {
   "expo": {
-    "name": "计算器",
-    "slug": "calculator-app",
-    "version": "1.0.0",
+    "name": "AgentForge",
+    "slug": "agentforge",
+    "owner": "arron1010",
+    "version": "1.0.28",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#1a1a2e"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "userInterfaceStyle": "dark",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.yourcompany.calculator"
+      "buildNumber": "1",
+      "bundleIdentifier": "com.miaoda.appd5fxo2s849a9"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#1a1a2e"
+        "backgroundColor": "#121212"
       },
-      "package": "com.yourcompany.calculator"
+      "predictiveBackGestureEnabled": false,
+      "versionCode": 1,
+      "package": "com.miaoda.appd5fxo2s849a9",
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.INTERNET"
+      ]
     },
     "web": {
+      "bundler": "metro",
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-asset",
+      "expo-sqlite",
+      "expo-font",
+      "expo-system-ui",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "需要访问相册以上传头像和收款码图片。",
+          "cameraPermission": "需要访问相机以拍摄头像和收款码图片。"
+        }
+      ],
+      "expo-file-system",
+      "expo-secure-store",
+      "expo-image"
+    ],
+    "router": {
+      "root": "src"
+    },
+    "experiments": {
+      "typedRoutes": true
+    },
+    "scheme": "appd5fxo2s849a9",
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "0f346e54-179b-4aee-bf2c-513c723e3ed0"
+      }
     }
   }
 }
