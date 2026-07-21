@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "AgentForge Build",
+    "slug": "agentforge-build-7b1e3a2a",
+    "owner": "arron1010",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#121212"
+      },
+      "versionCode": 1,
+      "package": "com.miaoda.agentforgebuild7b1e3a2a"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0f346e54-179b-4aee-bf2c-513c723e3ed0"
+      }
+    }
+  }
+}
