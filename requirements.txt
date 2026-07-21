@@ -1,0 +1,1 @@
+# 此项目无额外依赖，仅使用 Python 标准库 tkinter
